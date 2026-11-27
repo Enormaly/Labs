@@ -1,0 +1,37 @@
+@startuml
+title Factory Method: тип потребителя энергодиспетчерского пункта
+
+interface EnergyConsumer {
+  +description() : String
+  +contractedPowerKw() : double
+}
+
+interface ConsumerCreator {
+  +createConsumer(contractedPowerKw) : EnergyConsumer
+}
+
+class TractionConsumer
+class SignalingConsumer
+class IndustrialConsumer
+class HouseholdConsumer
+
+class TractionConsumerCreator
+class SignalingConsumerCreator
+class IndustrialConsumerCreator
+class HouseholdConsumerCreator
+
+EnergyConsumer <|.. TractionConsumer
+EnergyConsumer <|.. SignalingConsumer
+EnergyConsumer <|.. IndustrialConsumer
+EnergyConsumer <|.. HouseholdConsumer
+
+ConsumerCreator <|.. TractionConsumerCreator
+ConsumerCreator <|.. SignalingConsumerCreator
+ConsumerCreator <|.. IndustrialConsumerCreator
+ConsumerCreator <|.. HouseholdConsumerCreator
+
+TractionConsumerCreator ..> TractionConsumer : создаёт
+SignalingConsumerCreator ..> SignalingConsumer : создаёт
+IndustrialConsumerCreator ..> IndustrialConsumer : создаёт
+HouseholdConsumerCreator ..> HouseholdConsumer : создаёт
+@enduml
