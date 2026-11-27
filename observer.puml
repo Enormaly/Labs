@@ -1,0 +1,24 @@
+@startuml
+title Observer: авария на подстанции
+
+interface AccidentListener {
+  +onAccident(substationName, accidentCode)
+}
+
+class Substation {
+  +addListener(listener)
+  +removeListener(listener)
+  +accidentOccurred(accidentCode)
+}
+
+class DispatcherBoardListener
+class AccidentJournalListener
+class CrewMailingListener
+class AsuListener
+
+Substation o--> "0..*" AccidentListener : оповещает
+AccidentListener <|.. DispatcherBoardListener
+AccidentListener <|.. AccidentJournalListener
+AccidentListener <|.. CrewMailingListener
+AccidentListener <|.. AsuListener
+@enduml
